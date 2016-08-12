@@ -11,6 +11,6 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-        this.transform.Translate(Speed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0);	
+        this.transform.Translate(Speed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0, Space.World);	
 	}
 }
