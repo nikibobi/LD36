@@ -15,8 +15,8 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-        var movementSpeed = new Vector2(Speed * Input.GetAxis("Horizontal") * Time.fixedDeltaTime, 0);
-        body.AddForce(movementSpeed, ForceMode2D.Impulse);
+        var movementSpeed = Speed * Input.GetAxis("Horizontal") * Time.fixedDeltaTime;
+        body.AddForce(Vector2.right * movementSpeed, ForceMode2D.Impulse);
         if(Input.GetKeyDown(KeyCode.Space))
         {
             body.AddForce(Vector2.up * JumpPower, ForceMode2D.Force);
