@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Move : MonoBehaviour {
+public class Player : MonoBehaviour {
 
     [Range(1, 10)]
     public float Speed, JumpPower , MaxVelocityX;
@@ -31,15 +31,15 @@ public class Move : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Moving Platform")
-        {
-            transform.parent = collision.transform;
-        }
+        //if (collision.transform.tag == "Moving Platform")
+       // {
+          //  transform.parent = collision.transform;
+       // }
     }
 
     void OnCollisionExit2D()
     {
-        transform.parent = null;
+        //transform.parent = null;
     }
 
     public bool IsGrounded()
