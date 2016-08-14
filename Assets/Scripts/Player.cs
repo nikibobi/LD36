@@ -30,6 +30,19 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Moving Platform" && IsGrounded())
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    void OnCollisionExit2D()
+    {
+        transform.parent = null;
+    }
+
     private bool IsGrounded()
     {
         var linecastEnd = body.position + (Vector2.down * LineCastLength);
