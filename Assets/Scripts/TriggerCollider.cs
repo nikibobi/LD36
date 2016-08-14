@@ -7,11 +7,13 @@ public class TriggerCollider : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+
+        Vector3 possition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2, gameObject.transform.position.z);
         if(!GameObject.Find(prefab.name))
-        Instantiate(prefab, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(prefab, possition, gameObject.transform.rotation);
     }
     void OnTriggerExit2D(Collider2D collider)
     {
-        Destroy(GameObject.Find(prefab.name + "(Clone)"));
+        Destroy(GameObject.Find(prefab.name + ("(Clone)")));
     }
 }
