@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float JumpPower;
     [Range(1, 10)]
     public float MaxVelocityX;
-    public float LineCastLength;
+    public Vector2 lineCastLength;
     public LayerMask playerMask;
 
     private Rigidbody2D body;
@@ -45,10 +45,16 @@ public class Player : MonoBehaviour {
 
     private bool IsGrounded()
     {
-        var linecastEnd = body.position + (Vector2.down * LineCastLength);
-        Debug.DrawLine(body.position, linecastEnd, Color.yellow);
-        print("Player is grounded...");
-        return Physics2D.Linecast(body.position, linecastEnd, playerMask);
+        return Physics2D.Linecast(body.position, body.position + lineCastLength, playerMask);
+    }
+
+    private void HandleJump()
+    {
+        if (IsGrounded())
+        {
+            Debug.Log("Is grounded");
+            body.velocity += JumpPower * Vector2.up;
+        }
     }
 
     private void HandleMovement(float direction)
@@ -57,11 +63,5 @@ public class Player : MonoBehaviour {
         body.velocity.Set(Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
     }
 
-    private void HandleJump()
-    {
-        if (IsGrounded())
-        { 
-            body.velocity += JumpPower * Vector2.up;
-        }
-    }
+    
 }
