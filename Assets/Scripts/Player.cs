@@ -8,8 +8,8 @@ public class Player : MonoBehaviour {
     public float JumpPower;
     [Range(1, 10)]
     public float MaxVelocityX;
-    public Vector2 lineCastLength;
-    public LayerMask playerMask;
+    public float LineCastLength;
+    public LayerMask PlayerMask;
 
     private Rigidbody2D body;
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
 
     private bool IsGrounded()
     {
-        return Physics2D.Linecast(body.position, body.position + lineCastLength, playerMask);
+        return Physics2D.Linecast(body.position, body.position + (Vector2.down * LineCastLength), PlayerMask);
     }
 
     private void HandleJump()
