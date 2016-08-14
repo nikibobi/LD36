@@ -42,6 +42,15 @@ public class Player : MonoBehaviour {
         //transform.parent = null;
     }
 
+
+
+
+
+
+
+
+
+
     public bool IsGrounded()
     {
         var linecastEnd = body.position + (Vector2.down * LineCastLength);
