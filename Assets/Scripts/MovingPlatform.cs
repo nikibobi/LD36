@@ -1,42 +1,44 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class MovingPlatform : MonoBehaviour {
 
-    public GameObject Platform;
-
+    public Transform Platform;
     [Range(1, 10)]
     public float Speed;
-
     public Transform[] Path;
 
-    Transform CurrentNode;
-    int NodeSelector,Direction=1,NodeCounter;
+    private IEnumerator<Transform> points;
     
-    void Start () {
-        NodeCounter = Path.Length - 1;
+    void Start()
+    {
+        points = GetInfinate().GetEnumerator();
+        points.MoveNext();
     }
 
-    void Update () {
+    void Update()
+    {
+        Platform.position = Vector2.MoveTowards(Platform.position, points.Current.position, Speed * Time.deltaTime);
 
-        CurrentNode = Path[NodeSelector];
-
-        Platform.transform.position = Vector2.MoveTowards(Platform.transform.position, CurrentNode.position, Speed * Time.deltaTime);
-
-        if (Platform.transform.position == CurrentNode.position)
+        if(Platform.position == points.Current.position)
         {
-            NodeSelector += Direction;
+            points.MoveNext();
         }
+    }
 
-        if (NodeSelector> NodeCounter)
+    private IEnumerable<Transform> GetInfinate()
+    {
+        while(true)
         {
-            NodeSelector = NodeCounter - 1;
-            Direction = -1;
-        }
-        else if (NodeSelector<0)
-        {
-            NodeSelector = 1;
-            Direction = 1;
+            foreach (var point in Path)
+            {
+                yield return point;
+            }
+            foreach (var point in Path.Reverse())
+            {
+                yield return point;
+            }
         }
     }
 }
