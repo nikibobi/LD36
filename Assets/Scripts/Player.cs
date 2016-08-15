@@ -2,12 +2,13 @@
 
 public class Player : MonoBehaviour {
 
-    [Range(1, 10)]
+    [Range(0, 10)]
     public float Speed;
+    [Range(0, 10)]
+    public float MaxVelocityX;
     [Range(1, 10)]
     public float JumpPower;
-    [Range(1, 10)]
-    public float MaxVelocityX;
+    public bool FloatyMovement;
     public float LineCastLength;
     public LayerMask PlayerMask;
 
@@ -59,8 +60,19 @@ public class Player : MonoBehaviour {
 
     private void HandleMovement(float direction)
     {
-        body.AddForce(Vector2.right * direction, ForceMode2D.Impulse);
-        body.velocity.Set(Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
+        if (FloatyMovement)
+        {
+            //This is a Flaoty movement system with accelration and deceleration:
+            body.AddForce(Vector2.right * direction * (Speed/10), ForceMode2D.Impulse);
+            body.velocity = new Vector2 (Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
+        }
+        else
+        {
+            //This is a Snappy movement system with almost pixel perfect movement:
+            Vector2 currentVel = body.velocity;
+            currentVel.x = direction * Speed;
+            body.velocity = currentVel;
+        }
     }
 
     
