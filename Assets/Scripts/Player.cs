@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour {
 
@@ -13,17 +14,26 @@ public class Player : MonoBehaviour {
     public LayerMask PlayerMask;
 
     private Rigidbody2D body;
+    private Action<float> move;
 
 	// Use this for initialization
 	void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        if(FloatyMovement)
+        {
+            move = FloatyMove;
+        }
+        else
+        {
+            move = SnappyMove;
+        }
 	}
 
     // Update is called once per frame
     void Update()
     {
-        HandleMovement(Input.GetAxis("Horizontal"));
+        move(Input.GetAxis("Horizontal"));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,22 +68,18 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void HandleMovement(float direction)
+    private void FloatyMove(float direction)
     {
-        if (FloatyMovement)
-        {
-            //This is a Flaoty movement system with accelration and deceleration:
-            body.AddForce(Vector2.right * direction * (Speed/10), ForceMode2D.Impulse);
-            body.velocity = new Vector2 (Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
-        }
-        else
-        {
-            //This is a Snappy movement system with almost pixel perfect movement:
-            Vector2 currentVel = body.velocity;
-            currentVel.x = direction * Speed;
-            body.velocity = currentVel;
-        }
+        //This is a Flaoty movement system with accelration and deceleration:
+        body.AddForce(Vector2.right * direction * (Speed / 10), ForceMode2D.Impulse);
+        body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
     }
 
-    
+    private void SnappyMove(float direction)
+    {
+        //This is a Snappy movement system with almost pixel perfect movement:
+        Vector2 currentVel = body.velocity;
+        currentVel.x = direction * Speed;
+        body.velocity = currentVel;
+    }
 }
