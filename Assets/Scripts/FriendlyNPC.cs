@@ -12,11 +12,12 @@ public class FriendlyNPC : MonoBehaviour
     [Range(1, 20)]
     public float JumpPower = 10;
     public bool FloatyMovement = false;
-    public float LineCastLength = 0.6f;
+    public float LineCastLength = 0.51f;
     public LayerMask PlayerMask;
     public GameObject Target;
     public float DetectionRange = 10;
     public float MinimumRange = 2;
+    public float JumpTriggerHeight = 2;
 
     private Rigidbody2D body;
     private Action<float> movement;
@@ -86,29 +87,23 @@ public class FriendlyNPC : MonoBehaviour
 
     private void MoveAI()
     {
-        Vector2 TargetDirection = DetectTarget();
+        Vector2 destination = (Vector2)Target.transform.position - body.position;
+        float distance = destination.magnitude;
+        Vector2 direction = destination / distance;
+        bool inMovementRange = distance < DetectionRange && distance > MinimumRange;
+        float heightDifference = Target.transform.position.y - body.position.y;
 
-        movement(TargetDirection.x);
-
-        if (TargetDirection.y > 0.1)
+        if (inMovementRange)
         {
-            Jump();
+
+            movement(direction.x);
+
+            if (heightDifference > 2)
+            {
+                Jump();
+            }
         }
+        
+
     }
-
-    private Vector2 DetectTarget()
-    {
-        float distance = Vector2.Distance(body.position, Target.transform.position);
-
-        if (distance < DetectionRange && distance > MinimumRange)
-        {
-            Vector2 destination = (Vector2)Target.transform.position - body.position;
-            float range = destination.magnitude;
-            Vector2 direction = destination / range;
-            return direction;
-        }
-
-        return new Vector2(0, 0);
-    }
-
 }

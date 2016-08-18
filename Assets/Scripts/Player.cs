@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     [Range(1, 20)]
     public float JumpPower = 10;
     public bool FloatyMovement = false;
-    public float LineCastLength = 0.6f;
+    public float LineCastLength = 0.51f;
     public LayerMask PlayerMask;
 
     private Rigidbody2D body;
