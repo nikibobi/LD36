@@ -49,10 +49,7 @@ public class Moving : MonoBehaviour
 
     public void Jump()
     {
-        if (IsGrounded())
-        {
-            body.velocity += JumpPower * Vector2.up;
-        }
+        if (IsGrounded()) body.velocity += JumpPower * Vector2.up;
     }
 
     private bool IsGrounded()

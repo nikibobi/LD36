@@ -30,7 +30,7 @@ public class FriendlyNPC : MonoBehaviour
         {
             mover.Move(direction.x);
 
-            if (heightDifference > 2)
+            if (heightDifference > JumpTriggerHeight)
             {
                 mover.Jump();
             }
