@@ -2,22 +2,22 @@
 
 public class Player : MonoBehaviour
 {
-    private Moving mover;
+    private Movement movement;
 
 	// Use this for initialization
 	void Start()
     {
-        mover = GetComponent<Moving>();
+        movement = GetComponent<Movement>();
 	}
 
     // Update is called once per frame
     void Update()
     {
-        mover.Move(Input.GetAxis("Horizontal"));
+        movement.Move(Input.GetAxis("Horizontal"));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            mover.Jump();
+            movement.Jump();
         }
     }
 }

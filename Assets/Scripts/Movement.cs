@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Moving : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [Range(0, 20)]
     public float Speed = 10;
@@ -15,6 +15,7 @@ public class Moving : MonoBehaviour
 
     private Rigidbody2D body;
     private Action<float> move;
+    private float lastJumpTime = 0;
 
     void Start()
     {
@@ -49,7 +50,11 @@ public class Moving : MonoBehaviour
 
     public void Jump()
     {
-        if (IsGrounded()) body.velocity += JumpPower * Vector2.up;
+        if (Time.time > (lastJumpTime + 0.2))
+        {
+            if (IsGrounded()) body.velocity += JumpPower * Vector2.up;
+            lastJumpTime = Time.time;
+        }
     }
 
     private bool IsGrounded()

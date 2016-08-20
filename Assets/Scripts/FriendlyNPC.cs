@@ -7,13 +7,13 @@ public class FriendlyNPC : MonoBehaviour
     public float MinimumRange = 2;
     public float JumpTriggerHeight = 2;
 
-    private Moving mover;
+    private Movement movement;
     private Rigidbody2D body;
 
     // Use this for initialization
     void Start()
     {
-        mover = GetComponent<Moving>();
+        movement = GetComponent<Movement>();
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -28,11 +28,11 @@ public class FriendlyNPC : MonoBehaviour
 
         if (inMovementRange)
         {
-            mover.Move(direction.x);
+            movement.Move(direction.x);
 
             if (heightDifference > JumpTriggerHeight)
             {
-                mover.Jump();
+                movement.Jump();
             }
         }
     }
