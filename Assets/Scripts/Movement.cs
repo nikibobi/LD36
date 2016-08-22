@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D body;
     private Action<float> move;
     private float lastJumpTime = 0;
+    private bool IsGrounded = false;
 
     void Start()
     {
@@ -32,9 +33,22 @@ public class Movement : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Moving Platform" && IsGrounded())
+        foreach (var point in collision.contacts)
         {
-            if (Math.Abs(body.velocity.x) < 0.025)
+            Vector2 vector;
+            vector.x = body.position.x - point.point.x;
+            vector.y = body.position.y - point.point.y;
+            float angle = (float)Math.Atan2(vector.x, vector.y);
+
+            if (angle<0.81 && angle > -0.81)
+            {
+                IsGrounded = true;
+            }
+        }
+            
+        if (collision.transform.tag == "Moving Platform" && IsGrounded)
+        {
+            if (Math.Abs(body.velocity.x) < 0.025 && Math.Abs(body.velocity.y) < 0.025)
             {
                 transform.parent = collision.transform;
             }
@@ -49,6 +63,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("In contact with " + collision.transform.name);
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        print("No longer in contact with " + collision.transform.name);
+        IsGrounded = false;
+        transform.parent = null;
+    }
+
     public void Move(float direction)
     {
         move(direction);
@@ -58,15 +84,15 @@ public class Movement : MonoBehaviour
     {
         if (Time.time > (lastJumpTime + 0.2))
         {
-            if (IsGrounded()) body.velocity += JumpPower * Vector2.up;
+            if (IsGrounded) body.velocity += JumpPower * Vector2.up;
             lastJumpTime = Time.time;
         }
     }
 
-    private bool IsGrounded()
-    {
-        return Physics2D.Linecast(body.position, body.position + (Vector2.down * LineCastLength), PlayerMask);
-    }
+    //private bool IsGrounded()
+    //{
+    //    return Physics2D.Linecast(body.position, body.position + (Vector2.down * LineCastLength), PlayerMask);
+    //}
 
     private void FloatyMove(float direction)
     {
