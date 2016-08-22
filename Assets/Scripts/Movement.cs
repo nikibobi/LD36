@@ -30,17 +30,19 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.tag == "Moving Platform" && IsGrounded())
         {
-            transform.parent = collision.transform;
+            if (Math.Abs(body.velocity.x) < 0.025)
+            {
+                transform.parent = collision.transform;
+            }
+            else
+            {
+                transform.parent = null;
+            }
         }
-    }
-
-    void OnCollisionExit2D()
-    {
-        transform.parent = null;
     }
 
     public void Move(float direction)
