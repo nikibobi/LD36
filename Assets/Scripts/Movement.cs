@@ -43,6 +43,10 @@ public class Movement : MonoBehaviour
                 transform.parent = null;
             }
         }
+        else
+        {
+            transform.parent = null;
+        }
     }
 
     public void Move(float direction)
