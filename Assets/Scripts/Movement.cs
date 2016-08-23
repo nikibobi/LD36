@@ -38,12 +38,17 @@ public class Movement : MonoBehaviour
         {
             float deltaX = body.position.x - point.point.x;
             float deltaY = body.position.y - point.point.y;
+            float distance = (point.point - body.position).magnitude;
+            Vector2 direction = (point.point - body.position) / distance;
+            //RaycastHit2D hit= Physics2D.Raycast(transform.position, direction, distance + 0.1f);
+            
+
             float angle = (float)(Math.Atan2(deltaY, deltaX) * 180 / Math.PI);
 
             print(angle);
             Debug.DrawLine(body.position, point.point, Color.red, 0.5f);
 
-            if (angle<135 && angle > 45)
+            if (angle>44&&angle<136)
             {
                 IsGrounded = true;
             }
