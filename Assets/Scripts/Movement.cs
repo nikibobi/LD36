@@ -7,8 +7,8 @@ public class Movement : MonoBehaviour
     public float Speed = 10;
     [Range(0, 20)]
     public float MaxVelocityX = 10;
-    [Range(1, 20)]
-    public float JumpPower = 10;
+    [Range(1, 30)]
+    public float JumpPower = 15;
     public bool FloatyMovement = false;
     public float LineCastLength = 0.51f;
     public LayerMask PlayerMask;
@@ -40,7 +40,9 @@ public class Movement : MonoBehaviour
             vector.y = body.position.y - point.point.y;
             float angle = (float)Math.Atan2(vector.x, vector.y);
 
-            if (angle<0.81 && angle > -0.81)
+            print(angle);
+
+            if (angle<0.86 && angle > -0.86)
             {
                 IsGrounded = true;
             }
@@ -65,12 +67,12 @@ public class Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print("In contact with " + collision.transform.name);
+        //print("In contact with " + collision.transform.name);
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        print("No longer in contact with " + collision.transform.name);
+        //print("No longer in contact with " + collision.transform.name);
         IsGrounded = false;
         transform.parent = null;
     }
@@ -82,9 +84,9 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
-        if (Time.time > (lastJumpTime + 0.2))
+        if (Time.time > (lastJumpTime + 0.2) && IsGrounded)
         {
-            if (IsGrounded) body.velocity += JumpPower * Vector2.up;
+            body.velocity = new Vector2(body.velocity.x, (body.velocity.y / 2) + JumpPower);
             lastJumpTime = Time.time;
         }
     }
