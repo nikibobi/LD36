@@ -34,25 +34,21 @@ public class Movement : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        foreach (var point in collision.contacts)
-        {
-            float deltaX = body.position.x - point.point.x;
-            float deltaY = body.position.y - point.point.y;
-            float distance = (point.point - body.position).magnitude;
-            Vector2 direction = (point.point - body.position) / distance;
-            //RaycastHit2D hit= Physics2D.Raycast(transform.position, direction, distance + 0.1f);
+        //foreach (var point in collision.contacts)
+        //{
+        //    float deltaX = body.position.x - point.point.x;
+        //    float deltaY = body.position.y - point.point.y;
+        //    float distance = (point.point - body.position).magnitude;
+        //    Vector2 direction = (point.point - body.position) / distance;
+        //    float angle = (float)(Math.Atan2(deltaY, deltaX) * 180 / Math.PI);
             
+        //    Debug.DrawLine(body.position, point.point, Color.red, 0.5f);
 
-            float angle = (float)(Math.Atan2(deltaY, deltaX) * 180 / Math.PI);
-
-            print(angle);
-            Debug.DrawLine(body.position, point.point, Color.red, 0.5f);
-
-            if (angle>44&&angle<136)
-            {
-                IsGrounded = true;
-            }
-        }
+        //    if (angle>44&&angle<136)
+        //    {
+        //        IsGrounded = true;
+        //    }
+        //}
             
         if (collision.transform.tag == "Moving Platform" && IsGrounded)
         {
