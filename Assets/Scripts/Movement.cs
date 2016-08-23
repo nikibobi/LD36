@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D body;
     private Action<float> move;
     private float lastJumpTime = 0;
-    private bool IsGrounded = false;
+    private bool isGrounded = false;
 
     void Start()
     {
@@ -33,33 +33,10 @@ public class Movement : MonoBehaviour
     }
 
     void OnCollisionStay2D(Collision2D collision)
-    {
-        //foreach (var point in collision.contacts)
-        //{
-        //    float deltaX = body.position.x - point.point.x;
-        //    float deltaY = body.position.y - point.point.y;
-        //    float distance = (point.point - body.position).magnitude;
-        //    Vector2 direction = (point.point - body.position) / distance;
-        //    float angle = (float)(Math.Atan2(deltaY, deltaX) * 180 / Math.PI);
-            
-        //    Debug.DrawLine(body.position, point.point, Color.red, 0.5f);
-
-        //    if (angle>44&&angle<136)
-        //    {
-        //        IsGrounded = true;
-        //    }
-        //}
-            
-        if (collision.transform.tag == "Moving Platform" && IsGrounded)
+    {    
+        if (collision.transform.tag == "Moving Platform" && isGrounded && body.velocity.magnitude < 0.025)
         {
-            if (Math.Abs(body.velocity.x) < 0.025 && Math.Abs(body.velocity.y) < 0.025)
-            {
-                transform.parent = collision.transform;
-            }
-            else
-            {
-                transform.parent = null;
-            }
+            transform.parent = collision.transform;
         }
         else
         {
@@ -67,15 +44,19 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
     void OnCollisionExit2D(Collision2D collision)
     {
-        IsGrounded = false;
         transform.parent = null;
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        isGrounded = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        isGrounded = false;
     }
 
     public void Move(float direction)
@@ -85,17 +66,12 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
-        if (Time.time > (lastJumpTime + 0.2) && IsGrounded)
+        if (Time.time > (lastJumpTime + 0.2) && isGrounded)
         {
             body.velocity = new Vector2(body.velocity.x, (body.velocity.y / 2) + JumpPower);
             lastJumpTime = Time.time;
         }
     }
-
-    //private bool IsGrounded()
-    //{
-    //    return Physics2D.Linecast(body.position, body.position + (Vector2.down * LineCastLength), PlayerMask);
-    //}
 
     private void FloatyMove(float direction)
     {
