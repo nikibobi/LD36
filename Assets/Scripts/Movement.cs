@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class Movement : MonoBehaviour
 {
@@ -35,14 +36,14 @@ public class Movement : MonoBehaviour
     {
         foreach (var point in collision.contacts)
         {
-            Vector2 vector;
-            vector.x = body.position.x - point.point.x;
-            vector.y = body.position.y - point.point.y;
-            float angle = (float)Math.Atan2(vector.x, vector.y);
+            float deltaX = body.position.x - point.point.x;
+            float deltaY = body.position.y - point.point.y;
+            float angle = (float)(Math.Atan2(deltaY, deltaX) * 180 / Math.PI);
 
             print(angle);
+            Debug.DrawLine(body.position, point.point, Color.red, 0.5f);
 
-            if (angle<0.86 && angle > -0.86)
+            if (angle<135 && angle > 45)
             {
                 IsGrounded = true;
             }
@@ -67,12 +68,11 @@ public class Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //print("In contact with " + collision.transform.name);
+
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        //print("No longer in contact with " + collision.transform.name);
         IsGrounded = false;
         transform.parent = null;
     }
