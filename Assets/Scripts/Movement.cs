@@ -18,6 +18,8 @@ public class Movement : MonoBehaviour
     private Action<float> move;
     private float lastJumpTime = 0;
     private bool isGrounded = false;
+    private bool isOnMovingPlatform = false;
+
 
     void Start()
     {
@@ -39,26 +41,39 @@ public class Movement : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Moving Platform")
-        {
-            transform.parent = collision.transform;
-        }
+        //if (collision.transform.tag == "Moving Platform")
+        //{
+        //    transform.parent = collision.transform;
+        //}
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Moving Platform" )
-        {
-            transform.parent = collision.transform;
-        }
+        //if (collision.transform.tag == "Moving Platform" )
+        //{
+        //    transform.parent = collision.transform;
+        //}
     }
     void OnCollisionExit2D(Collision2D collision)
     {
-        transform.parent = null;
+        //transform.parent = null;
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
         isGrounded = true;
+
+        if (collision.transform.tag == "Moving Platform")
+        {
+            Rigidbody2D collidingBody = collision.GetComponent<Rigidbody2D>();
+            Vector2 currentVel = body.velocity;
+            body.velocity = collidingBody.velocity;
+            isOnMovingPlatform = true;
+        }
+        else
+        {
+            isOnMovingPlatform = false;
+        }
+
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -93,6 +108,10 @@ public class Movement : MonoBehaviour
         //This is a Snappy movement system with almost pixel perfect movement:
         Vector2 currentVel = body.velocity;
         currentVel.x = direction * Speed;
+        if (isOnMovingPlatform == false && isGrounded)
+        {
+            currentVel.y /= 2;
+        }
         body.velocity = currentVel;
     }
 }

@@ -10,21 +10,42 @@ public class MovingPlatform : MonoBehaviour {
     public Transform[] Path;
 
     private IEnumerator<Transform> points;
-    
+    private Rigidbody2D body;
+
     void Start()
     {
         points = GetInfinate().GetEnumerator();
         points.MoveNext();
+        body = Platform.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Platform.position = Vector2.MoveTowards(Platform.position, points.Current.position, Speed * Time.deltaTime);
+        //Platform.position = Vector2.MoveTowards(Platform.position, points.Current.position, Speed * Time.deltaTime)
 
-        if(Platform.position == points.Current.position)
+        Vector2 destination = (Vector2)points.Current.position - (Vector2)body.position;
+        float distance = destination.magnitude;
+        Vector2 direction = destination / distance;
+
+        body.velocity = direction * Speed;
+
+        if (distance < 0.2)
         {
             points.MoveNext();
         }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+            Rigidbody2D collidingBody = collision.GetComponent<Rigidbody2D>();
+            print(collidingBody.velocity);
+            collidingBody.velocity += body.velocity;
+            print(collidingBody.velocity);
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+
     }
 
     private IEnumerable<Transform> GetInfinate()
