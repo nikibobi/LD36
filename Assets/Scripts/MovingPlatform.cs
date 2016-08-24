@@ -35,19 +35,6 @@ public class MovingPlatform : MonoBehaviour {
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-            Rigidbody2D collidingBody = collision.GetComponent<Rigidbody2D>();
-            print(collidingBody.velocity);
-            collidingBody.velocity += body.velocity;
-            print(collidingBody.velocity);
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-
-    }
-
     private IEnumerable<Transform> GetInfinate()
     {
         while(true)
