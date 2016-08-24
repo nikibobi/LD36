@@ -50,11 +50,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        Debug.DrawLine(transform.position, transform.position + (Vector3)body.velocity, Color.green);
-    }
-
     void OnCollisionStay2D(Collision2D collision)
     {
         //if (collision.transform.tag == "Moving Platform")
