@@ -23,12 +23,19 @@ public class FriendlyNPC : MonoBehaviour
         Vector2 destination = (Vector2)Target.transform.position - body.position;
         float distance = destination.magnitude;
         Vector2 direction = destination / distance;
-        bool inMovementRange = distance < DetectionRange && distance > MinimumRange;
         float heightDifference = Target.transform.position.y - body.position.y;
 
-        if (inMovementRange)
+        if (distance < DetectionRange)
         {
-            movement.Move(direction.x);
+            if (Mathf.Round(distance)>MinimumRange)
+            {
+                movement.Move(direction.x);
+            }
+            else
+            {
+                //This is so god damn beautiful!
+                movement.Move((direction.x / MinimumRange)*(Mathf.Round(distance)-1));
+            }
 
             if (heightDifference > JumpTriggerHeight)
             {

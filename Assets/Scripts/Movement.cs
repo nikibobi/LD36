@@ -32,29 +32,39 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision)
-    {    
-        if (collision.transform.tag == "Moving Platform" && isGrounded && body.velocity.magnitude < 0.025)
-        {
-            transform.parent = collision.transform;
-        }
-        else
+    void Update()
+    {
+        if (body.velocity.magnitude > 0.025 || !isGrounded)
         {
             transform.parent = null;
         }
     }
 
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Moving Platform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Moving Platform" )
+        {
+            transform.parent = collision.transform;
+        }
+    }
     void OnCollisionExit2D(Collision2D collision)
     {
         transform.parent = null;
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D collision)
     {
         isGrounded = true;
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D collision)
     {
         isGrounded = false;
     }
@@ -68,6 +78,7 @@ public class Movement : MonoBehaviour
     {
         if (Time.time > (lastJumpTime + 0.2) && isGrounded)
         {
+            isGrounded = false;
             body.velocity = new Vector2(body.velocity.x, (body.velocity.y / 2) + JumpPower);
             lastJumpTime = Time.time;
         }
@@ -85,6 +96,10 @@ public class Movement : MonoBehaviour
         //This is a Snappy movement system with almost pixel perfect movement:
         Vector2 currentVel = body.velocity;
         currentVel.x = direction * Speed;
+        if (isGrounded)
+        {
+            currentVel.y /= 2 ;
+        }
         body.velocity = currentVel;
     }
 }
