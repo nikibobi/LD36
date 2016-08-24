@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     private float lastJumpTime = 0;
     private bool isGrounded = false;
     private bool isOnMovingPlatform = false;
+    private Rigidbody2D collidingBody;
 
 
     void Start()
@@ -64,9 +65,7 @@ public class Movement : MonoBehaviour
 
         if (collision.transform.tag == "Moving Platform")
         {
-            Rigidbody2D collidingBody = collision.GetComponent<Rigidbody2D>();
-            Vector2 currentVel = body.velocity;
-            body.velocity = collidingBody.velocity;
+            collidingBody = collision.GetComponent<Rigidbody2D>();
             isOnMovingPlatform = true;
         }
         else
@@ -108,9 +107,18 @@ public class Movement : MonoBehaviour
         //This is a Snappy movement system with almost pixel perfect movement:
         Vector2 currentVel = body.velocity;
         currentVel.x = direction * Speed;
-        if (isOnMovingPlatform == false && isGrounded)
+
+        if (isGrounded)
         {
-            currentVel.y /= 2;
+            if (isOnMovingPlatform)
+            {
+                currentVel.x += collidingBody.velocity.x;
+                currentVel.y = collidingBody.velocity.y;
+            }
+            else
+            {
+                currentVel.y /= 2;
+            }
         }
         body.velocity = currentVel;
     }
