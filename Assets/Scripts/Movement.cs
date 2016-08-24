@@ -34,10 +34,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if (body.velocity.magnitude > 0.025 || !isGrounded)
-        {
-            transform.parent = null;
-        }
+        Debug.DrawLine(transform.position, transform.position + (Vector3)body.velocity, Color.green);
     }
 
     void OnCollisionStay2D(Collision2D collision)
@@ -79,7 +76,7 @@ public class Movement : MonoBehaviour
         if (Time.time > (lastJumpTime + 0.2) && isGrounded)
         {
             isGrounded = false;
-            body.velocity = new Vector2(body.velocity.x, (body.velocity.y / 2) + JumpPower);
+            body.velocity = new Vector2(body.velocity.x, JumpPower);
             lastJumpTime = Time.time;
         }
     }
@@ -96,10 +93,6 @@ public class Movement : MonoBehaviour
         //This is a Snappy movement system with almost pixel perfect movement:
         Vector2 currentVel = body.velocity;
         currentVel.x = direction * Speed;
-        if (isGrounded)
-        {
-            currentVel.y /= 2 ;
-        }
         body.velocity = currentVel;
     }
 }
