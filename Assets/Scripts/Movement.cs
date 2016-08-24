@@ -10,9 +10,10 @@ public class Movement : MonoBehaviour
     public float MaxVelocityX = 10;
     [Range(1, 30)]
     public float JumpPower = 15;
-    public bool FloatyMovement = false;
     public float LineCastLength = 0.51f;
     public LayerMask PlayerMask;
+    public bool FloatyMovement = false;
+    public bool AirStrafing = true;
 
     private Rigidbody2D body;
     private Action<float> move;
@@ -25,13 +26,27 @@ public class Movement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        if (FloatyMovement)
+        if (AirStrafing)
         {
-            move = FloatyMove;
+            if (FloatyMovement)
+            {
+                move = FloatyMove;
+            }
+            else
+            {
+                move = SnappyMove;
+            }
         }
         else
         {
-            move = SnappyMove;
+            if (FloatyMovement)
+            {
+                move = FloatyMoveNoAirStrafing;
+            }
+            else
+            {
+                move = SnappyMoveNoAirStrafing;
+            }
         }
     }
 
@@ -102,6 +117,16 @@ public class Movement : MonoBehaviour
         body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
     }
 
+    private void FloatyMoveNoAirStrafing(float direction)
+    {
+        //This is a Flaoty movement system with accelration and deceleration:
+        if (isGrounded)
+        {
+            body.AddForce(Vector2.right * direction * (Speed / 10), ForceMode2D.Impulse);
+            body.velocity = new Vector2(Mathf.Clamp(body.velocity.x, -MaxVelocityX, MaxVelocityX), body.velocity.y);
+        }
+    }
+
     private void SnappyMove(float direction)
     {
         //This is a Snappy movement system with almost pixel perfect movement:
@@ -121,5 +146,27 @@ public class Movement : MonoBehaviour
             }
         }
         body.velocity = currentVel;
+    }
+
+    private void SnappyMoveNoAirStrafing(float direction)
+    {
+        //This is a Snappy movement system with almost pixel perfect movement:
+        if (isGrounded)
+        {
+            Vector2 currentVel = body.velocity;
+            currentVel.x = direction * Speed;
+            
+            if (isOnMovingPlatform)
+            {
+                currentVel.x += collidingBody.velocity.x;
+                currentVel.y = collidingBody.velocity.y;
+            }
+            else
+            {
+                currentVel.y /= 2;
+            }
+
+            body.velocity = currentVel;
+        }
     }
 }
