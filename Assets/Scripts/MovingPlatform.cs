@@ -29,7 +29,7 @@ public class MovingPlatform : MonoBehaviour {
 
         body.velocity = direction * Speed;
 
-        if (distance < 0.2)
+        if (distance < Speed * Time.fixedDeltaTime)
         {
             points.MoveNext();
         }
