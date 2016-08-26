@@ -11,6 +11,7 @@ public class MovingPlatform : MonoBehaviour {
 
     private IEnumerator<Transform> points;
     private Rigidbody2D body;
+    private Vector2 lastPointPosition;
 
     void Start()
     {
@@ -23,16 +24,35 @@ public class MovingPlatform : MonoBehaviour {
     {
         //Platform.position = Vector2.MoveTowards(Platform.position, points.Current.position, Speed * Time.deltaTime)
 
-        Vector2 destination = (Vector2)points.Current.position - (Vector2)body.position;
-        float distance = destination.magnitude;
-        Vector2 direction = destination / distance;
+        Vector2 difference = (Vector2)points.Current.position - (Vector2)body.position;
+        float distance = difference.magnitude;
+        Vector2 direction = difference / distance;
 
-        body.velocity = direction * Speed;
+        Vector2 differenceToLast = lastPointPosition - (Vector2)body.position;
+        float distanceToLast = differenceToLast.magnitude;
+
+        Vector2 differenceBetween = lastPointPosition - (Vector2)points.Current.position;
+        float distanceBetween = differenceBetween.magnitude;
+
+        if (distance < distanceToLast)
+        {
+            body.velocity = direction * ((Speed * distance / distanceBetween) + 1f);
+        }
+        else if (distance > distanceToLast)
+        {
+            body.velocity = direction * ((Speed * distanceToLast / distanceBetween) + 1f);
+        }
 
         if (distance < Speed * Time.fixedDeltaTime)
         {
-            points.MoveNext();
+            NextPoint();
         }
+    }
+
+    void NextPoint()
+    {
+        lastPointPosition = points.Current.position;
+        points.MoveNext();
     }
 
     private IEnumerable<Transform> GetInfinate()
