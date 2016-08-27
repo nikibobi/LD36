@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Bow : MonoBehaviour {
 
     private Vector2 ClickPos, CurrnetPos;
-    private bool clicked = false;
+    //private bool clicked = false;
     private float power;
     private Vector2 direction;
 
@@ -21,12 +20,12 @@ public class Bow : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             ClickPos = Input.mousePosition;
-            clicked = true;
+            //clicked = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            clicked = false;
+            //clicked = false;
             if (power > 10)
             {
                 GameObject arrow = (GameObject)Instantiate(ArrowType, (Vector2)transform.position + (direction * 1.25f), transform.rotation);

@@ -10,8 +10,6 @@ public class Movement : MonoBehaviour
     public float MaxVelocityX = 10;
     [Range(1, 30)]
     public float JumpPower = 15;
-    public float LineCastLength = 0.51f;
-    public LayerMask PlayerMask;
     public bool FloatyMovement = false;
     public bool AirStrafing = true;
 
@@ -26,47 +24,14 @@ public class Movement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+
         if (AirStrafing)
         {
-            if (FloatyMovement)
-            {
-                move = FloatyMove;
-            }
-            else
-            {
-                move = SnappyMove;
-            }
-        }
-        else
+            move = FloatyMovement ? FloatyMove : (Action<float>)SnappyMove;
+        } else
         {
-            if (FloatyMovement)
-            {
-                move = FloatyMoveNoAirStrafing;
-            }
-            else
-            {
-                move = SnappyMoveNoAirStrafing;
-            }
+            move = FloatyMovement ? FloatyMoveNoAirStrafing : (Action<float>)SnappyMoveNoAirStrafing;
         }
-    }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        //if (collision.transform.tag == "Moving Platform")
-        //{
-        //    transform.parent = collision.transform;
-        //}
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.transform.tag == "Moving Platform" )
-        //{
-        //    transform.parent = collision.transform;
-        //}
-    }
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        //transform.parent = null;
     }
 
     void OnTriggerStay2D(Collider2D collision)

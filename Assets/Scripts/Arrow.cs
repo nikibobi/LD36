@@ -3,6 +3,7 @@
 public class Arrow : MonoBehaviour {
 
     private Rigidbody2D body;
+    public int damage = 50;
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
