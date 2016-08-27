@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyNPC : MonoBehaviour {
 
@@ -10,9 +11,11 @@ public class EnemyNPC : MonoBehaviour {
     public float attackDamage = 0;
     public float attackSpeed = 0f;
     private float lastAttackTime = 0;
+    private bool dead = false;
 
     private Movement movement;
     private Rigidbody2D body;
+    private HealthSystem health;
 
     
 
@@ -21,38 +24,54 @@ public class EnemyNPC : MonoBehaviour {
     {
         movement = GetComponent<Movement>();
         body = GetComponent<Rigidbody2D>();
+        health = GetComponent<HealthSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 destination = (Vector2)Target.transform.position - body.position;
-        float distance = destination.magnitude;
-        Vector2 direction = destination / distance;
-        float heightDifference = Target.transform.position.y - body.position.y;
-
-        if (distance < DetectionRange)
+        if (!dead)
         {
-            if (Mathf.Round(distance) > MinimumRange)
+            if (health.CheckHealthPoints())
             {
-                movement.Move(direction.x);
+                dead = true;
+                death();
             }
-            else
+
+            Vector2 destination = (Vector2)Target.transform.position - body.position;
+            float distance = destination.magnitude;
+            Vector2 direction = destination / distance;
+            float heightDifference = Target.transform.position.y - body.position.y;
+
+            if (distance < DetectionRange)
             {
-                movement.Move((direction.x / MinimumRange) * (Mathf.Round(distance) - 1));
-                //Attack timing.
-                if (Time.time > (lastAttackTime + attackSpeed) && !Target.GetComponent<Player>().dead)
+                if (Mathf.Round(distance) > MinimumRange)
                 {
-                    Target.GetComponent<HealthSystem>().LoseHp(attackDamage);
-                    lastAttackTime = Time.time;
-                    print(this.name + " attacked!");
+                    movement.Move(direction.x);
+                }
+                else
+                {
+                    movement.Move((direction.x / MinimumRange) * (Mathf.Round(distance) - 1));
+                    //Attack timing.
+                    if (Time.time > (lastAttackTime + attackSpeed) && !Target.GetComponent<Player>().dead)
+                    {
+                        Target.GetComponent<HealthSystem>().LoseHp(attackDamage);
+                        lastAttackTime = Time.time;
+                        print(this.name + " attacked!");
+                    }
+                }
+
+                if (heightDifference > JumpTriggerHeight)
+                {
+                    movement.Jump();
                 }
             }
-
-            if (heightDifference > JumpTriggerHeight)
-            {
-                movement.Jump();
-            }
         }
+    }
+
+    private void death()
+    {
+        print(name + " died!");
+        Destroy(movement);
     }
 }

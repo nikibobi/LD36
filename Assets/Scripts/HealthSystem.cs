@@ -16,4 +16,8 @@ public class HealthSystem : MonoBehaviour {
     {
         healthPoints += healAmount;
     }
+    public bool CheckHealthPoints()
+    {
+        return healthPoints <= 0;
+    }
 }
