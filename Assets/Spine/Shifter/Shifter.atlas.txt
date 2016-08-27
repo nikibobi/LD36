@@ -1,0 +1,167 @@
+
+Shifter.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: false
+  xy: 867, 175
+  size: 45, 79
+  orig: 45, 79
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: true
+  xy: 88, 27
+  size: 52, 86
+  orig: 52, 86
+  offset: 0, 0
+  index: -1
+blunt
+  rotate: false
+  xy: 2, 22
+  size: 84, 232
+  orig: 84, 232
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 227, 115
+  size: 90, 101
+  orig: 90, 101
+  offset: 0, 0
+  index: -1
+eyes_closed
+  rotate: false
+  xy: 227, 81
+  size: 66, 32
+  orig: 66, 32
+  offset: 0, 0
+  index: -1
+eyes_open
+  rotate: false
+  xy: 593, 85
+  size: 66, 32
+  orig: 66, 32
+  offset: 0, 0
+  index: -1
+faces/justhappy
+  rotate: false
+  xy: 2, 6
+  size: 44, 14
+  orig: 44, 14
+  offset: 0, 0
+  index: -1
+faces/seensomeshit
+  rotate: false
+  xy: 965, 229
+  size: 51, 25
+  orig: 51, 25
+  offset: 0, 0
+  index: -1
+faces/seensomeshitsad
+  rotate: false
+  xy: 176, 52
+  size: 64, 27
+  orig: 64, 27
+  offset: 0, 0
+  index: -1
+faces/soulgazer
+  rotate: false
+  xy: 88, 2
+  size: 55, 23
+  orig: 55, 23
+  offset: 0, 0
+  index: -1
+faces/soulgazer2
+  rotate: false
+  xy: 145, 2
+  size: 54, 23
+  orig: 54, 23
+  offset: 0, 0
+  index: -1
+foot_l
+  rotate: false
+  xy: 661, 90
+  size: 49, 27
+  orig: 49, 27
+  offset: 0, 0
+  index: -1
+foot_r
+  rotate: false
+  xy: 914, 164
+  size: 49, 31
+  orig: 49, 31
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 914, 134
+  size: 29, 28
+  orig: 29, 28
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 88, 81
+  size: 137, 135
+  orig: 137, 135
+  offset: 0, 0
+  index: -1
+heads/circle_s
+  rotate: false
+  xy: 319, 74
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+heads/pentagon_s
+  rotate: false
+  xy: 456, 74
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+heads/square_s
+  rotate: false
+  xy: 593, 119
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+heads/triangle_s
+  rotate: false
+  xy: 730, 119
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: -1
+leg_l
+  rotate: false
+  xy: 914, 197
+  size: 49, 57
+  orig: 49, 57
+  offset: 0, 0
+  index: -1
+leg_r
+  rotate: false
+  xy: 867, 119
+  size: 45, 54
+  orig: 45, 54
+  offset: 0, 0
+  index: -1
+long
+  rotate: true
+  xy: 88, 218
+  size: 36, 256
+  orig: 36, 256
+  offset: 0, 0
+  index: -1
+sharp
+  rotate: true
+  xy: 346, 211
+  size: 43, 222
+  orig: 43, 222
+  offset: 0, 0
+  index: -1
