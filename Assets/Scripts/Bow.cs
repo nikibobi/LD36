@@ -27,9 +27,9 @@ public class Bow : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             clicked = false;
-            if (power > 1)
+            if (power > 10)
             {
-                GameObject arrow = (GameObject)Instantiate(ArrowType, (Vector2)transform.position + (direction * 1), transform.rotation);
+                GameObject arrow = (GameObject)Instantiate(ArrowType, (Vector2)transform.position + (direction * 1.25f), transform.rotation);
                 Rigidbody2D arrowBody = arrow.GetComponent<Rigidbody2D>();
                 arrowBody.velocity = direction * power;
             }

@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Arrow : MonoBehaviour {
 
     private Rigidbody2D body;
-    private bool collided = false;
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
@@ -13,7 +11,7 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!collided)
+        if (body != null)
         {
             Vector2 velocity = body.velocity;
             float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
@@ -21,16 +19,9 @@ public class Arrow : MonoBehaviour {
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (true)//collision.transform.tag == "Ground")
-        {
-            collided = true;
-            //gameObject.transform.parent = collision.transform;
-            body.isKinematic = true;
-            //Destroy(body);
-            //Destroy(GetComponent<CircleCollider2D>());
-            //body.freezeRotation = true;
-            //body.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
+    { 
+        transform.parent = collision.transform;
+        GetComponent<CircleCollider2D>().isTrigger = true;
+        Destroy(body);
     }
 }
