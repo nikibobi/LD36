@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour {
         print(healthSystem);
         if (healthSystem != null)
         {
-            healthSystem.LoseHp(damage);
+            healthSystem.DoDamange(damage);
         }
 
         transform.parent = collision.transform;

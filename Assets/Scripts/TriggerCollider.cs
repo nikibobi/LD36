@@ -11,6 +11,7 @@ public class TriggerCollider : MonoBehaviour {
         if (collider.name == "Player")
             Instantiate(prefab, (Vector2)transform.position + offset, gameObject.transform.rotation);
     }
+
     void OnTriggerExit2D(Collider2D collider)
     {
         GameObject clone = GameObject.Find(prefab.name + "(Clone)");
@@ -19,6 +20,4 @@ public class TriggerCollider : MonoBehaviour {
             Destroy(clone);
         }
     }
-
-
 }
