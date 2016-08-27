@@ -13,9 +13,11 @@ public class TriggerCollider : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D collider)
     {
-        var obj = GameObject.Find(prefab.name + "(Clone)");
-        if (obj != null)
-            Destroy(obj);
+        GameObject clone = GameObject.Find(prefab.name + "(Clone)");
+        if (clone != null)
+        {
+            Destroy(clone);
+        }
     }
 
 

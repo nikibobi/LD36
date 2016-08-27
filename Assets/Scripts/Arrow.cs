@@ -2,15 +2,15 @@
 
 public class Arrow : MonoBehaviour {
 
+    public float damage;
+
     private Rigidbody2D body;
-    public int damage = 50;
-	// Use this for initialization
+
 	void Start () {
         body = GetComponent<Rigidbody2D>();
 
     }
-	
-	// Update is called once per frame
+
 	void Update () {
         if (body != null)
         {
@@ -19,8 +19,17 @@ public class Arrow : MonoBehaviour {
             this.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
-    { 
+    {
+
+        HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+        print(healthSystem);
+        if (healthSystem != null)
+        {
+            healthSystem.LoseHp(damage);
+        }
+
         transform.parent = collision.transform;
         Destroy(GetComponent<CircleCollider2D>());
         Destroy(body);
