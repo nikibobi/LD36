@@ -42,7 +42,8 @@ public class EnemyNPC : MonoBehaviour {
                 movement.Move((direction.x / MinimumRange) * (Mathf.Round(distance) - 1));
                 //Attack timing.
                 if (Time.time > (lastAttackTime + attackSpeed) && !Target.GetComponent<Player>().dead)
-                { 
+                {
+                    Target.GetComponent<HealthSystem>().LoseHp(attackDamage);
                     lastAttackTime = Time.time;
                     print(this.name + " attacked!");
                 }

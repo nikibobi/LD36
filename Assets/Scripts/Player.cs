@@ -18,30 +18,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dead)
+        if (dead) { return; }
+        else checkHealtPoints();
+
+        if (Input.GetKey(KeyCode.D))
         {
-
-            movement = null;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-            dead = true;
-            //string animation = Random.Range(0, 2) == 0 ? "DeathBackward" : "DeathForward";
-            spine.state.SetAnimation(0, "DeathBackward", false);
-            return;
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                spine.skeleton.FlipX = false;
-                spine.AnimationName = "Move";
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                spine.skeleton.FlipX = true;
-                spine.AnimationName = "Move";
-            }
-            else
-            {
-                spine.AnimationName = "Idle";
-            }
+            spine.skeleton.FlipX = false;
+            spine.AnimationName = "Move";
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            spine.skeleton.FlipX = true;
+            spine.AnimationName = "Move";
+        }
+        else
+        {
+            spine.AnimationName = "Idle";
+        }
             movement.Move(Input.GetAxis("Horizontal"));
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -54,11 +47,23 @@ public class Player : MonoBehaviour
             {
                 spine.state.SetAnimation(0, "Shoot", false);
             }
-        }
     }
 
-    void deadAnimation(bool death)
+    void death()
     {
-
+        print("player died");
+        movement = null;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+        dead = true;
+        //string animation = Random.Range(0, 2) == 0 ? "DeathBackward" : "DeathForward";
+        spine.state.SetAnimation(0, "DeathBackward", false);
+        return;
+    }
+    void checkHealtPoints()
+    {
+        if (GetComponent<HealthSystem>().healthPoints <= 0)
+        {
+            death();
+        }
     }
 }
