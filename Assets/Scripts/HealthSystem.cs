@@ -25,11 +25,18 @@ public class HealthSystem : MonoBehaviour {
         Armor = Armor + amount;
     }
 
-    public void DoDamange(float damage)
+    public void DoDamange(float damage, bool invincible)
     {
-        //League's formula for damage reduction.
-        HealthPoints -= 100 / (100 + Armor) * damage;
-        print(HealthPoints);
+        //League's formula for armor.
+        if (!invincible)
+        {
+            HealthPoints -= 100 / (100 + Armor) * damage;
+            print(HealthPoints);
+        }
+        else
+        {
+            print(name + " is invincible");
+        }
     }
 
     public bool IsDead()

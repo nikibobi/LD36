@@ -10,8 +10,15 @@ public class Movement : MonoBehaviour
     public float MaxVelocityX = 10;
     [Range(1, 30)]
     public float JumpPower = 15;
+
     public bool FloatyMovement = false;
     public bool AirStrafing = true;
+
+    public float parryTime = 0.5f;
+    private float lastParry = 0f;
+    public bool inParry { get; private set; }
+
+    public bool IsGrounded { get { return isGrounded; } }
 
     private Rigidbody2D body;
     private Action<float> move;
@@ -19,7 +26,6 @@ public class Movement : MonoBehaviour
     private bool isGrounded = false;
     private bool isOnMovingPlatform = false;
     private Rigidbody2D collidingBody;
-
 
     void Start()
     {
@@ -69,6 +75,24 @@ public class Movement : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, JumpPower);
             lastJumpTime = Time.time;
         }
+    }
+
+    public void Parry(out float nextAvailableParry)
+    {
+        if (Time.time > lastParry + 2)
+        {
+            inParry = false;
+        }
+            
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (Time.time > (lastParry + 2))
+            {
+                inParry = true;
+                lastParry = Time.time;
+            }
+        }
+        nextAvailableParry = lastParry + 2;
     }
 
     private void FloatyMove(float direction)

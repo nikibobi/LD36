@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private HealthSystem health;
     private bool hasDied = false;
 
+    private float parryCooldown;
+
     // Use this for initialization
     void Start()
     {
@@ -41,13 +43,19 @@ public class Player : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                spine.state.SetAnimation(1, "Attack", false);
+                if(movement.IsGrounded) spine.state.SetAnimation(1, "Attack", false);
                 movement.Jump();
             }
 
             if (Input.GetMouseButtonDown(0))
             {
                 spine.state.SetAnimation(0, "Shoot", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if(parryCooldown < Time.time) spine.state.SetAnimation(1, "Parried", false);
+                movement.Parry(out parryCooldown);
             }
         }
         else if (!hasDied)
