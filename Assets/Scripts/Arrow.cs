@@ -22,7 +22,8 @@ public class Arrow : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     { 
         transform.parent = collision.transform;
-        GetComponent<CircleCollider2D>().isTrigger = true;
+        Destroy(GetComponent<CircleCollider2D>());
         Destroy(body);
     }
+
 }

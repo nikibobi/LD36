@@ -44,7 +44,6 @@ public class Bow : MonoBehaviour {
             power = distance/10;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             this.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         }
 
     }

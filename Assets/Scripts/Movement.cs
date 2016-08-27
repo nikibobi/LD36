@@ -28,7 +28,8 @@ public class Movement : MonoBehaviour
         if (AirStrafing)
         {
             move = FloatyMovement ? FloatyMove : (Action<float>)SnappyMove;
-        } else
+        }
+        else
         {
             move = FloatyMovement ? FloatyMoveNoAirStrafing : (Action<float>)SnappyMoveNoAirStrafing;
         }
