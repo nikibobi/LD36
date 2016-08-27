@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     {
         movement = GetComponent<Movement>();
         spine = GetComponent<SkeletonAnimation>();
-        spine.skeleton.SetAttachment("Face", "faces/seensomeshitsad");
     }
 
     // Update is called once per frame
@@ -52,6 +51,11 @@ public class Player : MonoBehaviour
         {
             spine.state.SetAnimation(1, "Attack", false);
             movement.Jump();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            spine.state.SetAnimation(0, "Shoot", false);
         }
     }
 
