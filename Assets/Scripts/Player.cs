@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                spine.state.SetAnimation(0, "Shoot", false);
+                spine.state.SetAnimation(1, "Shoot", false);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
