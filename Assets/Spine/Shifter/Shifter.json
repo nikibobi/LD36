@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "k/0NuFPLuXLHQ+Svl2sfwzJzfQs", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
+"skeleton": { "hash": "/YykxC+wKb6q7KyJvZ/juByWbb4", "spine": "2.1.27", "width": 292.98, "height": 267.38 },
 "bones": [
 	{ "name": "Root" },
 	{ "name": "Hip", "parent": "Root", "x": -0.93, "y": 73.4 },
@@ -12,17 +12,17 @@
 	{ "name": "Feet2", "parent": "Leg2", "length": 12.32, "x": 41.33, "y": 0.12, "rotation": -17.19 },
 	{ "name": "Head", "parent": "Body", "length": 65.29, "x": 73.6, "y": 1.09, "rotation": -88.23 },
 	{ "name": "Shield", "parent": "Arm", "x": 45.01, "y": -2.09, "rotation": 123.56 },
-	{ "name": "Weapon", "parent": "Arm2", "length": 137.64, "x": 48.2, "y": 12.78, "rotation": 92.5 }
+	{ "name": "Weapon", "parent": "Arm2", "length": 137.64, "x": 48.2, "y": 12.78, "rotation": 80.54 }
 ],
 "slots": [
 	{ "name": "Arm2", "bone": "Arm2", "attachment": "Arm2" },
-	{ "name": "Weapon", "bone": "Weapon" },
 	{ "name": "Hand", "bone": "Arm2", "attachment": "Hand" },
 	{ "name": "Leg2", "bone": "Leg2", "attachment": "Leg2" },
 	{ "name": "Feet2", "bone": "Feet2", "attachment": "Feet2" },
 	{ "name": "Leg", "bone": "Leg", "attachment": "Leg" },
 	{ "name": "Feet", "bone": "Feet", "attachment": "Feet" },
 	{ "name": "Body", "bone": "Body", "attachment": "body" },
+	{ "name": "Weapon", "bone": "Weapon", "attachment": "long" },
 	{ "name": "Arm", "bone": "Arm", "attachment": "Arm" },
 	{ "name": "Head", "bone": "Head", "attachment": "Head" },
 	{ "name": "Face", "bone": "Head", "color": "000000ff", "attachment": "faces/seensomeshit" },
@@ -39,7 +39,7 @@
 		},
 		"Weapon": {
 			"blunt": { "x": 75.79, "y": 0.74, "rotation": -89.43, "width": 84, "height": 232 },
-			"long": { "x": 86.59, "y": 0.95, "rotation": -89.56, "width": 36, "height": 256 },
+			"long": { "x": 30.67, "y": 0.95, "rotation": -89.56, "width": 36, "height": 256 },
 			"sharp": { "x": 82.01, "y": -10.66, "rotation": -97.4, "width": 43, "height": 222 }
 		}
 	},
@@ -1361,6 +1361,34 @@
 				"translate": [
 					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
 					{ "time": 1, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"Jab": {
+		"bones": {
+			"Arm2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -20.11 },
+					{ "time": 0.3333, "angle": 7.83 },
+					{ "time": 0.5, "angle": 49.72 }
+				]
+			},
+			"Arm": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -20.06 },
+					{ "time": 0.3333, "angle": -314.93 },
+					{ "time": 0.5, "angle": -269.72 }
+				]
+			},
+			"Weapon": {
+				"rotate": [
+					{ "time": 0, "angle": -2.68 },
+					{ "time": 0.1666, "angle": 10.75 },
+					{ "time": 0.3333, "angle": -15.76 },
+					{ "time": 0.5, "angle": -60.04 }
 				]
 			}
 		}
