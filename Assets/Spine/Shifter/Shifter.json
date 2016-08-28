@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "DfHia5NsmnZNDwayGT1we5Bl184", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
+"skeleton": { "hash": "H3imkOGRTh/gCeQCHGvzywU7scY", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
 "bones": [
 	{ "name": "Root" },
 	{ "name": "Hip", "parent": "Root", "x": -0.93, "y": 73.4 },
@@ -1391,6 +1391,24 @@
 					{ "time": 0.1666, "angle": 10.75 },
 					{ "time": 0.3333, "angle": -15.76 },
 					{ "time": 0.5, "angle": -60.04 }
+				]
+			}
+		}
+	},
+	"Jab2": {
+		"bones": {
+			"Arm": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -7.76, "y": 0 },
+					{ "time": 0.3333, "x": 7.8, "y": 0 }
+				]
+			},
+			"Arm2": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": -9.79, "y": 0 },
+					{ "time": 0.3333, "x": 11.34, "y": 0 }
 				]
 			}
 		}
