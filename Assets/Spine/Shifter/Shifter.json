@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "0/iNNANA3jyxeKz06mubP/hz0cE", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
+"skeleton": { "hash": "/fh1znR5e0GixcCg8ws4ie9Frek", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
 "bones": [
 	{ "name": "Root" },
 	{ "name": "Hip", "parent": "Root", "x": -0.93, "y": 73.4 },
@@ -10,11 +10,11 @@
 	{ "name": "Feet2", "parent": "Leg2", "length": 12.32, "x": 41.33, "y": 0.12, "rotation": -17.19 },
 	{ "name": "Head", "parent": "Body", "length": 65.29, "x": 73.6, "y": 1.09, "rotation": -88.23 },
 	{ "name": "Sholder", "parent": "Body", "x": 54.58, "y": 34.45, "rotation": 166.67 },
-	{ "name": "Sholder2", "parent": "Body", "x": 57.13, "y": -26.61 },
+	{ "name": "Sholder2", "parent": "Body", "x": 57.13, "y": -26.61, "rotation": 202.83 },
 	{ "name": "Arm", "parent": "Sholder", "length": 51.63, "x": 5.21, "y": -1.73 },
-	{ "name": "Arm2", "parent": "Sholder2", "length": 52.61, "x": -3.32, "y": -1.9, "rotation": -157.17 },
-	{ "name": "Shield", "parent": "Arm", "x": 45.01, "y": -2.09, "rotation": 123.56 },
-	{ "name": "Weapon", "parent": "Arm2", "length": 137.64, "x": 48.2, "y": 12.78, "rotation": 80.54 }
+	{ "name": "Arm2", "parent": "Sholder2", "length": 52.61, "x": 3.8, "y": 0.46 },
+	{ "name": "Shield", "parent": "Arm", "x": 45, "y": -2.09, "rotation": 123.56 },
+	{ "name": "Weapon", "parent": "Arm2", "length": 137.64, "x": 48.19, "y": 12.78, "rotation": 80.54 }
 ],
 "slots": [
 	{ "name": "Arm2", "bone": "Arm2", "attachment": "Arm2" },
@@ -62,7 +62,7 @@
 			"Feet2": { "name": "foot_l", "x": 4.26, "y": -4.34, "rotation": 91.37, "width": 49, "height": 27 }
 		},
 		"Hand": {
-			"Hand": { "name": "hand", "x": 49.06, "y": 2.06, "rotation": 67.64, "width": 29, "height": 28 }
+			"Hand": { "name": "hand", "x": 49.06, "y": 2.05, "rotation": 67.64, "width": 29, "height": 28 }
 		},
 		"Head": {
 			"Head": { "name": "head", "x": -3.5, "y": 58.44, "rotation": -2.76, "width": 137, "height": 135 }
