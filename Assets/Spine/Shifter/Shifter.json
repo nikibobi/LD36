@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "H3imkOGRTh/gCeQCHGvzywU7scY", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
+"skeleton": { "hash": "54DW7iJGaoiPH7u689+I7Haloqs", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
 "bones": [
 	{ "name": "Root" },
 	{ "name": "Hip", "parent": "Root", "x": -0.93, "y": 73.4 },
@@ -1367,48 +1367,34 @@
 			}
 		}
 	},
-	"Jab": {
+	"JabAfter": {
 		"bones": {
 			"Arm2": {
-				"rotate": [
-					{ "time": 0, "angle": 0 },
-					{ "time": 0.1666, "angle": -20.11 },
-					{ "time": 0.3333, "angle": 7.83 },
-					{ "time": 0.5, "angle": 49.72 }
+				"translate": [
+					{ "time": 0, "x": -9.79, "y": 0 },
+					{ "time": 0.1666, "x": 32.25, "y": 0 }
 				]
 			},
 			"Arm": {
-				"rotate": [
-					{ "time": 0, "angle": 0 },
-					{ "time": 0.1666, "angle": -20.06 },
-					{ "time": 0.3333, "angle": -314.93 },
-					{ "time": 0.5, "angle": -269.72 }
-				]
-			},
-			"Weapon": {
-				"rotate": [
-					{ "time": 0, "angle": -2.68 },
-					{ "time": 0.1666, "angle": 10.75 },
-					{ "time": 0.3333, "angle": -15.76 },
-					{ "time": 0.5, "angle": -60.04 }
+				"translate": [
+					{ "time": 0, "x": -7.76, "y": 0 },
+					{ "time": 0.1666, "x": 25.84, "y": 0 }
 				]
 			}
 		}
 	},
-	"Jab2": {
+	"JabBefore": {
 		"bones": {
 			"Arm": {
 				"translate": [
 					{ "time": 0, "x": 0, "y": 0 },
-					{ "time": 0.1666, "x": -7.76, "y": 0 },
-					{ "time": 0.3333, "x": 7.8, "y": 0 }
+					{ "time": 0.1666, "x": -7.76, "y": 0 }
 				]
 			},
 			"Arm2": {
 				"translate": [
 					{ "time": 0, "x": 0, "y": 0 },
-					{ "time": 0.1666, "x": -9.79, "y": 0 },
-					{ "time": 0.3333, "x": 11.34, "y": 0 }
+					{ "time": 0.1666, "x": -9.79, "y": 0 }
 				]
 			}
 		}
