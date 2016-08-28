@@ -1,9 +1,22 @@
 fileFormatVersion: 2
 guid: cdaff87dfafda9d45bb868ed378c9885
-timeCreated: 1472304317
+timeCreated: 1472369788
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Wolf_0
+    21300002: Wolf_1
+    21300004: Wolf_2
+    21300006: Wolf_3
+    21300008: Wolf_4
+    21300010: Wolf_5
+    21300012: Wolf_6
+    21300014: Wolf_7
+    21300016: Wolf_8
+    21300018: Wolf_9
+    21300020: Wolf_10
+    21300022: Wolf_11
+    21300024: Wolf_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +51,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +64,176 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Wolf_0
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 915
+        width: 146
+        height: 63
+      alignment: 9
+      pivot: {x: 0.034295227, y: 0.47002012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_1
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 913
+        width: 99
+        height: 51
+      alignment: 9
+      pivot: {x: 0.17567922, y: 0.9073642}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 664
+        width: 408
+        height: 192
+      alignment: 9
+      pivot: {x: 0.96950036, y: 0.65481347}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_3
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 657
+        width: 183
+        height: 209
+      alignment: 9
+      pivot: {x: 0.52650326, y: 0.89450234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_4
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 636
+        width: 97
+        height: 238
+      alignment: 9
+      pivot: {x: 0.5111921, y: 0.6837899}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_5
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 650
+        width: 93
+        height: 70
+      alignment: 9
+      pivot: {x: 0.23924468, y: 0.9850054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 230
+        width: 625
+        height: 337
+      alignment: 9
+      pivot: {x: 0.24106887, y: 0.4705989}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_7
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 211
+        width: 362
+        height: 329
+      alignment: 9
+      pivot: {x: 0.3515593, y: 0.4513198}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_8
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 386
+        width: 156
+        height: 121
+      alignment: 9
+      pivot: {x: 0.080283925, y: 0.21941811}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_9
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 387
+        width: 92
+        height: 60
+      alignment: 9
+      pivot: {x: 0.2627683, y: 0.86375326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_10
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 164
+        width: 94
+        height: 148
+      alignment: 9
+      pivot: {x: 0.4226061, y: 0.9915596}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_11
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 174
+        width: 75
+        height: 140
+      alignment: 9
+      pivot: {x: 0.33833334, y: 0.96768427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Wolf_12
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 139
+        width: 98
+        height: 53
+      alignment: 9
+      pivot: {x: 0.22780313, y: 0.9575524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
