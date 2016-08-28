@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine.Unity;
 
 public class Spear : MonoBehaviour, IWeapon {
+
+
+    private bool animationStarted = false;
+
     // Use this for initialization
     void Start()
     {
@@ -14,19 +19,17 @@ public class Spear : MonoBehaviour, IWeapon {
 
     }
 
-    public void Attack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    public void Attack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
-        if (mouse1 && holdTime >= 1)
-        {
-            Vector3 differnece = origin - clickEnd;
-            float distance = differnece.magnitude;
-            Vector3 direction = differnece / distance;
-            print("fittchick");
-        }
+        animationStarted = false;
     }
 
-    public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
-        print("fittchick");
+        if (!animationStarted)
+        {
+            animationStarted = true;
+            animator.state.SetAnimation(1, "Jab", false);
+        }
     }
 }

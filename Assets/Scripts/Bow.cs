@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine.Unity;
 
 public class Bow : MonoBehaviour, IWeapon
 {
 
     public GameObject ArrowType;
+    private bool animationStarted = false;
 
     // Use this for initialization
     void Start()
@@ -18,7 +20,7 @@ public class Bow : MonoBehaviour, IWeapon
 
     }
 
-    public void Attack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    public void Attack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
         Vector3 differnece = clickEnd - origin;
         float distance = differnece.magnitude;
@@ -34,10 +36,16 @@ public class Bow : MonoBehaviour, IWeapon
             Rigidbody2D arrowBody = arrow.GetComponent<Rigidbody2D>();
             arrowBody.velocity = direction * power;
         }
+        animationStarted = false;
     }
 
-    public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
+        if (!animationStarted)
+        {
+            animationStarted = true;
+            animator.state.SetAnimation(1, "Shoot", false);
+        }
         //Vector3 difference = clickEnd - origin;
         //float distance = difference.magnitude;
         //Vector3 direction = difference / distance;

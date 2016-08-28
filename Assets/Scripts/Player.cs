@@ -114,8 +114,6 @@ public class Player : MonoBehaviour
             RightHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
             LeftHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
             attackStart = Time.time;
-
-            spine.state.SetAnimation(1, "Shoot", false);
         }
 
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
@@ -131,7 +129,7 @@ public class Player : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             RightHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             LeftHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            WeaponUpdate(Input.GetMouseButton(0), Input.GetMouseButton(1), Time.time - attackStart, playerPos, currentPos);
+            WeaponUpdate(Input.GetMouseButton(0), Input.GetMouseButton(1), Time.time - attackStart, playerPos, currentPos, spine);
         }
 
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
@@ -142,17 +140,17 @@ public class Player : MonoBehaviour
             leftHand.bone.SetToSetupPose();
             rightHand.mode = SkeletonUtilityBone.Mode.Follow;
             leftHand.mode = SkeletonUtilityBone.Mode.Follow;
-            WeaponAttack(Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1), Time.time - attackStart, playerPos, currentPos);
+            WeaponAttack(Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1), Time.time - attackStart, playerPos, currentPos, spine);
         }
     }
 
-    void WeaponAttack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    void WeaponAttack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
-        weapon.Attack(mouse1, mouse2, holdTime, origin, clickEnd);
+        weapon.Attack(mouse1, mouse2, holdTime, origin, clickEnd, animator);
     }
 
-    void WeaponUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd)
+    void WeaponUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
-        weapon.PreAttackUpdate(mouse1, mouse2, holdTime, origin, clickEnd);
+        weapon.PreAttackUpdate(mouse1, mouse2, holdTime, origin, clickEnd, animator);
     }
 }
