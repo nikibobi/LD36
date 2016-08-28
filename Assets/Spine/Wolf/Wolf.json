@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "83R1kEJHcuQAHHatNciJ9a4lcCQ", "spine": "2.1.27", "width": 1069.83, "height": 769.31 },
+"skeleton": { "hash": "IXIHZ1i/joRO+17rlE94XSG/Zbg", "spine": "2.1.27", "width": 1069.83, "height": 769.31 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "back_left_ik", "parent": "root", "x": -173.57, "y": 1.04 },
@@ -136,6 +136,23 @@
 	}
 },
 "animations": {
+	"Die": {
+		"bones": {
+			"bone": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.2666, "x": 354.29, "y": -322.56 },
+					{ "time": 0.5, "x": 759.92, "y": -322.56 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2666, "angle": 335.4 }
+				]
+			}
+		}
+	},
 	"Sit": {
 		"bones": {
 			"bone": {
