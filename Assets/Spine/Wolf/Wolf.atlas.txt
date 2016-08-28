@@ -32,7 +32,7 @@ BACK_LOWER_LEG_RIGHT
   orig: 128, 128
   offset: 0, 0
   index: -1
-BACK_UPPER_LEG
+BACK_UPPER_CALF
   rotate: false
   xy: 516, 132
   size: 256, 256
@@ -74,7 +74,7 @@ FRONT_LOWER_LEG_RIGHT
   orig: 128, 128
   offset: 0, 0
   index: -1
-FRONT_UPPER_LEG
+FRONT_UPPER_CALF
   rotate: false
   xy: 774, 132
   size: 128, 256
