@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "/YykxC+wKb6q7KyJvZ/juByWbb4", "spine": "2.1.27", "width": 292.98, "height": 267.38 },
+"skeleton": { "hash": "tQKkbqVCiXfUj9tMA6Fhoj6Iu4o", "spine": "2.1.27", "width": 141.26, "height": 267.38 },
 "bones": [
 	{ "name": "Root" },
 	{ "name": "Hip", "parent": "Root", "x": -0.93, "y": 73.4 },
@@ -22,7 +22,7 @@
 	{ "name": "Leg", "bone": "Leg", "attachment": "Leg" },
 	{ "name": "Feet", "bone": "Feet", "attachment": "Feet" },
 	{ "name": "Body", "bone": "Body", "attachment": "body" },
-	{ "name": "Weapon", "bone": "Weapon", "attachment": "long" },
+	{ "name": "Weapon", "bone": "Weapon" },
 	{ "name": "Arm", "bone": "Arm", "attachment": "Arm" },
 	{ "name": "Head", "bone": "Head", "attachment": "Head" },
 	{ "name": "Face", "bone": "Head", "color": "000000ff", "attachment": "faces/seensomeshit" },
