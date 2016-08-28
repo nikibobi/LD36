@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
             Vector3 difference = currentPos - (Vector3)playerPos;
             float distance = difference.magnitude;
             Vector3 direction = difference / distance;
+
             if (direction.x <0)
             {
                 spine.skeleton.FlipX = true;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
             {
                 spine.skeleton.FlipX = false;
             }
+
             movement.Move(Input.GetAxis("Horizontal"));
 
             if (Input.GetKey(KeyCode.D))
@@ -71,13 +73,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (movement.IsGrounded) spine.state.SetAnimation(1, "Attack", false);
                 movement.Jump();
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                spine.state.SetAnimation(1, "Shoot", false);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
@@ -118,6 +114,8 @@ public class Player : MonoBehaviour
             RightHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
             LeftHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
             attackStart = Time.time;
+
+            spine.state.SetAnimation(1, "Shoot", false);
         }
 
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
@@ -138,8 +136,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
-            RightHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Follow;
-            LeftHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Follow;
+            var leftHand = LeftHand.GetComponent<SkeletonUtilityBone>();
+            var rightHand = RightHand.GetComponent<SkeletonUtilityBone>();
+            rightHand.bone.SetToSetupPose();
+            leftHand.bone.SetToSetupPose();
+            rightHand.mode = SkeletonUtilityBone.Mode.Follow;
+            leftHand.mode = SkeletonUtilityBone.Mode.Follow;
             WeaponAttack(Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1), Time.time - attackStart, playerPos, currentPos);
         }
     }
