@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using Spine.Unity;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private IWeapon weapon;
 
     private float attackStart;
+    private float releaseDelayTime = 0;
+    private float lastAttack=0;
 
     // Use this for initialization
     void Start()
@@ -109,39 +112,51 @@ public class Player : MonoBehaviour
         Vector3 currentPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.z));
         currentPos = Camera.main.ScreenToWorldPoint(currentPos);
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Time.time > lastAttack + 1f)
         {
-            RightHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
-            LeftHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
-            attackStart = Time.time;
-        }
 
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
-        {
-            Vector3 difference = currentPos - (Vector3)playerPos;
-            float distance = difference.magnitude;
-            Vector3 direction = difference / distance;
-            if (spine.skeleton.FlipX == true)
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {
-                direction.x = -direction.x;
-                direction.y = -direction.y;
+                attackStart = Time.time;
             }
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            RightHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            LeftHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            WeaponUpdate(Input.GetMouseButton(0), Input.GetMouseButton(1), Time.time - attackStart, playerPos, currentPos, spine);
-        }
 
-        if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
-        {
-            var leftHand = LeftHand.GetComponent<SkeletonUtilityBone>();
-            var rightHand = RightHand.GetComponent<SkeletonUtilityBone>();
-            rightHand.bone.SetToSetupPose();
-            leftHand.bone.SetToSetupPose();
-            rightHand.mode = SkeletonUtilityBone.Mode.Follow;
-            leftHand.mode = SkeletonUtilityBone.Mode.Follow;
-            WeaponAttack(Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1), Time.time - attackStart, playerPos, currentPos, spine);
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+            {
+                Vector3 difference = currentPos - (Vector3)playerPos;
+                float distance = difference.magnitude;
+                Vector3 direction = difference / distance;
+                if (spine.skeleton.FlipX == true)
+                {
+                    direction.x = -direction.x;
+                    direction.y = -direction.y;
+                }
+                RightHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
+                LeftHand.GetComponent<SkeletonUtilityBone>().mode = SkeletonUtilityBone.Mode.Override;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                RightHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                LeftHand.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                WeaponUpdate(Input.GetMouseButton(0), Input.GetMouseButton(1), Time.time - attackStart, playerPos, currentPos, spine);
+            }
+
+            if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+            {
+                lastAttack = Time.time;
+                StartCoroutine(DelayedExecution());
+
+                WeaponAttack(Input.GetMouseButtonUp(0), Input.GetMouseButtonUp(1), Time.time - attackStart, playerPos, currentPos, spine);
+            }
         }
+    }
+
+    IEnumerator DelayedExecution()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var rightHand = RightHand.GetComponent<SkeletonUtilityBone>();
+        var leftHand = LeftHand.GetComponent<SkeletonUtilityBone>();
+        rightHand.bone.SetToSetupPose();
+        leftHand.bone.SetToSetupPose();
+        rightHand.mode = SkeletonUtilityBone.Mode.Follow;
+        leftHand.mode = SkeletonUtilityBone.Mode.Follow;
     }
 
     void WeaponAttack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)

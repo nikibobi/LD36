@@ -37,6 +37,7 @@ public class Bow : MonoBehaviour, IWeapon
             arrowBody.velocity = direction * power;
         }
         animationStarted = false;
+        animator.state.SetAnimation(0, "Idle", false);
     }
 
     public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
@@ -44,12 +45,12 @@ public class Bow : MonoBehaviour, IWeapon
         if (!animationStarted)
         {
             animationStarted = true;
-            animator.state.SetAnimation(1, "Shoot", false);
+            animator.state.SetAnimation(0, "Shoot", false);
         }
-        //Vector3 difference = clickEnd - origin;
-        //float distance = difference.magnitude;
-        //Vector3 direction = difference / distance;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //this.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Vector3 difference = clickEnd - origin;
+        float distance = difference.magnitude;
+        Vector3 direction = difference / distance;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        this.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
