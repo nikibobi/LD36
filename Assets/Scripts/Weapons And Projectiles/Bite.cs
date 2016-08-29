@@ -41,7 +41,7 @@ public class Bite : MonoBehaviour, IWeapon
     void OnTriggerStay2D(Collider2D collision)
     {
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
-        print(healthSystem);
+        //print(healthSystem);
         if (healthSystem != null && damageNow)
         {
             healthSystem.DoDamange(damage, collision.gameObject.GetComponent<Movement>().inParry);

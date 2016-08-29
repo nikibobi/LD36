@@ -7,10 +7,11 @@ public class EnemyNPC : MonoBehaviour {
     public GameObject Target;
     public float DetectionRange = 10;
     public float MinimumRange = 2;
+    public float AttackRange = 0.75f;
     public float JumpTriggerHeight = 2;
     
     public float attackSpeed = 0f;
-    private float lastAttackTime = 0;
+    private float lastAttack = 0;
 
     private Movement movement;
     private SkeletonAnimation spine;
@@ -41,15 +42,19 @@ public class EnemyNPC : MonoBehaviour {
 
             if (distance < DetectionRange)
             {
-                if (Mathf.Round(distance) > MinimumRange)
+                if (distance > MinimumRange)
                 {
                     movement.Move(direction.x);
-                    //attack when?
-                    weapon.Attack(true, true, 0, Vector2.zero, Vector2.zero, spine);
                 }
                 else
                 {
                     movement.Move((direction.x / MinimumRange) * (Mathf.Round(distance) - 1));
+
+                    if (Time.time > lastAttack + 1f && distance <= AttackRange)
+                    {
+                        weapon.Attack(true, true, 0, Vector2.zero, Vector2.zero, spine);
+                        lastAttack = Time.time;
+                    }
                 }
 
                 if (heightDifference > JumpTriggerHeight)

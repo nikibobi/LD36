@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private IWeapon weapon;
 
     private float attackStart;
-    private float releaseDelayTime = 0;
+    //private float releaseDelayTime = 0;
     private float lastAttack=0;
 
     // Use this for initialization
@@ -32,12 +32,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         AnimationsAndMovement();
-        HandleWeapons();
+
+        if (!health.IsDead())
+        {
+            HandleWeapons();
+        }
     }
 
     void AnimationsAndMovement()
     {
-        if (!hasDied && !health.IsDead())
+        if (!health.IsDead())
         {
 
             Vector2 playerPos = this.gameObject.transform.position;
