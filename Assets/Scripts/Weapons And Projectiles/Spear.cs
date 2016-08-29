@@ -4,6 +4,8 @@ using Spine.Unity;
 
 public class Spear : MonoBehaviour, IWeapon {
 
+    public float damage;
+    private bool damageNow = false;
 
     private bool animationStarted = false;
     private Quaternion rotation;
@@ -24,7 +26,9 @@ public class Spear : MonoBehaviour, IWeapon {
     {
         animationStarted = false;
         animator.state.SetAnimation(1, "JabAfter", false);
-        StartCoroutine(DelayedExecution());
+        damageNow = true;
+        StartCoroutine(DelayedExecution(0.5f, () => { damageNow = false; }));
+        StartCoroutine(DelayedExecution(0.5f, () => { gameObject.transform.rotation = rotation; }));
     }
 
     public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
@@ -43,9 +47,20 @@ public class Spear : MonoBehaviour, IWeapon {
         
     }
 
-    IEnumerator DelayedExecution()
+    IEnumerator DelayedExecution(float time, System.Action function)
     {
-        yield return new WaitForSeconds(0.5f);
-        gameObject.transform.rotation = rotation;
+        yield return new WaitForSeconds(time);
+        function();
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+        print(healthSystem);
+        if (healthSystem != null && damageNow)
+        {
+            healthSystem.DoDamange(damage, collision.gameObject.GetComponent<Movement>().inParry);
+            damageNow = false;
+        }
     }
 }

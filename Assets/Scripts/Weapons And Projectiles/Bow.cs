@@ -47,10 +47,25 @@ public class Bow : MonoBehaviour, IWeapon
             animationStarted = true;
             animator.state.SetAnimation(0, "Shoot", false);
         }
+
+        FlipWeapon(animator);
+
         Vector3 difference = clickEnd - origin;
         float distance = difference.magnitude;
         Vector3 direction = difference / distance;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         this.gameObject.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    public void FlipWeapon(SkeletonAnimation animator)
+    {
+        if (animator.skeleton.FlipX)
+        {
+            this.gameObject.transform.localScale = new Vector3(-1, -1, 1);
+        }
+        else
+        {
+            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
