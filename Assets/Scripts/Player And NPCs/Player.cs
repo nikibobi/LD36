@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Transform WeaponSlot;
     public Transform RightHand;
     public Transform LeftHand;
+    public GameObject[] Weapons;
 
     private Movement movement;
     private SkeletonAnimation spine;
@@ -83,6 +84,15 @@ public class Player : MonoBehaviour
                 movement.Jump();
             }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                EquipWeapon(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                EquipWeapon(1);
+            }
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (parryCooldown < Time.time) spine.state.SetAnimation(1, "Parried", false);
@@ -94,6 +104,12 @@ public class Player : MonoBehaviour
             hasDied = true;
             Death();
         }
+    }
+
+    void EquipWeapon(int index)
+    {
+        Destroy(WeaponSlot.GetChild(0).gameObject);
+        Instantiate(Weapons[index], WeaponSlot.position, WeaponSlot.rotation, WeaponSlot);
     }
 
     void Death()
