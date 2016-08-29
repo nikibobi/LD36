@@ -2,20 +2,23 @@
 using System.Collections;
 using Spine.Unity;
 
-public class Bite : MonoBehaviour {
+public class Bite : MonoBehaviour
+{
 
     public float damage;
     private bool damageNow = false;
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void Attack(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
     {
@@ -44,3 +47,4 @@ public class Bite : MonoBehaviour {
             damageNow = false;
         }
     }
+}
