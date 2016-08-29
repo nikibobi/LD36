@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "IXIHZ1i/joRO+17rlE94XSG/Zbg", "spine": "2.1.27", "width": 1069.83, "height": 769.31 },
+"skeleton": { "hash": "YKJnBHTmDSLCdYpe3VwKOl458WY", "spine": "2.1.27", "width": 1069.83, "height": 769.31 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "back_left_ik", "parent": "root", "x": -173.57, "y": 1.04 },
@@ -136,6 +136,41 @@
 	}
 },
 "animations": {
+	"Attack": {
+		"bones": {
+			"front_right_ik": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 195.6, "y": 177.99 },
+					{ "time": 0.2666, "x": 258.62, "y": 354.14 },
+					{ "time": 0.3666, "x": 195.6, "y": 177.99 },
+					{ "time": 0.4666, "x": 258.62, "y": 354.14 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"front_left_ik": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.1666, "x": 236.66, "y": 256.65 },
+					{ "time": 0.2666, "x": 254.44, "y": 164.54 },
+					{ "time": 0.3666, "x": 236.66, "y": 256.65 },
+					{ "time": 0.4666, "x": 254.44, "y": 164.54 },
+					{ "time": 0.6666, "x": 0, "y": 0 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": 327.87 },
+					{ "time": 0.2666, "angle": 24.14 },
+					{ "time": 0.3666, "angle": 354.83 },
+					{ "time": 0.4666, "angle": 34.18 },
+					{ "time": 0.5666, "angle": 348.98 },
+					{ "time": 0.6666, "angle": 19.06 }
+				]
+			}
+		}
+	},
 	"Die": {
 		"bones": {
 			"bone": {
