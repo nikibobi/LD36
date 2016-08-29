@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using Spine.Unity;
 
 public class EnemyNPC : MonoBehaviour {
 
@@ -13,6 +13,7 @@ public class EnemyNPC : MonoBehaviour {
     private float lastAttackTime = 0;
 
     private Movement movement;
+    private SkeletonAnimation spine;
     private Rigidbody2D body;
     private HealthSystem health;
     private bool hasDied = false;
@@ -21,6 +22,7 @@ public class EnemyNPC : MonoBehaviour {
     void Start()
     {
         movement = GetComponent<Movement>();
+        spine = GetComponent<SkeletonAnimation>();
         body = GetComponent<Rigidbody2D>();
         health = gameObject.GetComponent<HealthSystem>();
     }
@@ -62,6 +64,18 @@ public class EnemyNPC : MonoBehaviour {
     private void Death()
     {
         print(name + " died!");
-        Destroy(this.gameObject);
+        body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        spine.state.SetAnimation(0, "Die", false).Complete += Despawn;
+    }
+
+    private void Despawn(Spine.AnimationState state, int trackIndex, int loopCount)
+    {
+        StartCoroutine(DestroyAfter(3));
+    }
+
+    private IEnumerator DestroyAfter(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        Destroy(gameObject);
     }
 }
