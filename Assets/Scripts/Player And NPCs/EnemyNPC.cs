@@ -42,6 +42,15 @@ public class EnemyNPC : MonoBehaviour {
             Vector2 direction = destination / distance;
             float heightDifference = Target.transform.position.y - body.position.y;
 
+            if (direction.x < 0)
+            {
+                this.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            }
+
             if (distance < DetectionRange)
             {
                 if (distance > MinimumRange)
