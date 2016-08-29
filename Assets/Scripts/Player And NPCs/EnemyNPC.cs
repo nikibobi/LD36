@@ -16,6 +16,7 @@ public class EnemyNPC : MonoBehaviour {
     private SkeletonAnimation spine;
     private Rigidbody2D body;
     private HealthSystem health;
+    private IWeapon weapon;
     private bool hasDied = false;
 
     // Use this for initialization
@@ -25,6 +26,7 @@ public class EnemyNPC : MonoBehaviour {
         spine = GetComponent<SkeletonAnimation>();
         body = GetComponent<Rigidbody2D>();
         health = gameObject.GetComponent<HealthSystem>();
+        weapon = GetComponentInChildren(typeof(IWeapon)) as IWeapon;
     }
 
     // Update is called once per frame
@@ -42,6 +44,8 @@ public class EnemyNPC : MonoBehaviour {
                 if (Mathf.Round(distance) > MinimumRange)
                 {
                     movement.Move(direction.x);
+                    //attack when?
+                    weapon.Attack(true, true, 0, Vector2.zero, Vector2.zero, spine);
                 }
                 else
                 {
