@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 public class Arrow : MonoBehaviour {
 
     public float damage;
@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour {
 
 	void Start () {
         body = GetComponent<Rigidbody2D>();
-
+        GetComponent<AudioSource>().Play();
     }
 
 	void Update () {
@@ -33,6 +33,15 @@ public class Arrow : MonoBehaviour {
         transform.parent = collision.transform;
         Destroy(GetComponent<CircleCollider2D>());
         Destroy(body);
+        StartCoroutine(DelayedExecution(1f, () => {
+            Destroy(GetComponent<AudioSource>());
+        }));
+    }
+
+    IEnumerator DelayedExecution(float time, System.Action function)
+    {
+        yield return new WaitForSeconds(time);
+        function();
     }
 
 }

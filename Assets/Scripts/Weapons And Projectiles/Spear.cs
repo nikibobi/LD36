@@ -26,6 +26,7 @@ public class Spear : MonoBehaviour, IWeapon {
     {
         animationStarted = false;
         animator.state.SetAnimation(1, "JabAfter", false);
+        GetComponent<AudioSource>().Play();
         damageNow = true;
         StartCoroutine(DelayedExecution(0.5f, () => {
             damageNow = false;

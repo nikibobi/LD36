@@ -32,12 +32,12 @@ public class Bow : MonoBehaviour, IWeapon
         if (power > 10)
         {
             power = Mathf.Clamp(power, 10, 100);
-            GameObject arrow = (GameObject)Instantiate(ArrowType, (Vector3)transform.position + (direction * 2f), transform.rotation);
+            GameObject arrow = (GameObject)Instantiate(ArrowType, (Vector3)transform.position + (direction * 1.25f), transform.rotation);
             Rigidbody2D arrowBody = arrow.GetComponent<Rigidbody2D>();
             arrowBody.velocity = direction * power;
         }
         animationStarted = false;
-        animator.state.SetAnimation(0, "Idle", false);
+        //animator.state.SetAnimation(0, "Idle", false);
     }
 
     public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)
@@ -45,7 +45,8 @@ public class Bow : MonoBehaviour, IWeapon
         if (!animationStarted)
         {
             animationStarted = true;
-            animator.state.SetAnimation(0, "Shoot", false);
+            //animator.state.SetAnimation(0, "Shoot", false);
+            GetComponent<AudioSource>().Play();
         }
 
         FlipWeapon(animator);

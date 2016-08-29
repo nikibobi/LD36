@@ -2,3 +2,6 @@ BackgroundWind.WAV - Creative Commons 0 - https://freesound.org/people/ERR0/soun
 WaveStart.WAV  - Sampling+ - https://freesound.org/people/viorelvio/sounds/66258/
 GameStart.WAV - Attribution 3.0 - https://freesound.org/people/newagesoup/sounds/338674/
 Bite.WAV - Attribution 3.0 - http://soundbible.com/1529-Dog-Bite.html
+BowPull.WAV - Attribution Noncommercial - https://freesound.org/people/LiamG_SFX/sounds/322215/
+BowRelease.MP3 - Attribution 3.0 - https://freesound.org/people/Samulis/sounds/209399/
+Spear.WAV - Creative Commons 0 - https://freesound.org/people/Streety/sounds/30244/
