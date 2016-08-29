@@ -28,6 +28,8 @@ public class EnemyNPC : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         health = gameObject.GetComponent<HealthSystem>();
         weapon = GetComponentInChildren(typeof(IWeapon)) as IWeapon;
+        if (Target == null)
+            Target = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
