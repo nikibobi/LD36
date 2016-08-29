@@ -24,6 +24,7 @@ public class Bite : MonoBehaviour, IWeapon
     {
         damageNow = true;
         animator.state.SetAnimation(0, "Attack", false);
+        GetComponent<AudioSource>().Play();
         StartCoroutine(DelayedExecution(0.5f, () => { damageNow = false; }));
     }
 

@@ -24,6 +24,7 @@ class Spawner : MonoBehaviour
     private IEnumerator NextWave()
     {
         wave += 1;
+        GetComponent<AudioSource>().Play();
 
         for (int i = 0; i < wave; i++)
         {
