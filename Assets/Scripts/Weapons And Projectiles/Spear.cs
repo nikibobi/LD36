@@ -27,8 +27,10 @@ public class Spear : MonoBehaviour, IWeapon {
         animationStarted = false;
         animator.state.SetAnimation(1, "JabAfter", false);
         damageNow = true;
-        StartCoroutine(DelayedExecution(0.5f, () => { damageNow = false; }));
-        StartCoroutine(DelayedExecution(0.5f, () => { gameObject.transform.rotation = rotation; }));
+        StartCoroutine(DelayedExecution(0.5f, () => {
+            damageNow = false;
+            gameObject.transform.rotation = rotation;
+        }));
     }
 
     public void PreAttackUpdate(bool mouse1, bool mouse2, float holdTime, Vector2 origin, Vector2 clickEnd, SkeletonAnimation animator)

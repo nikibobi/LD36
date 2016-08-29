@@ -2,7 +2,7 @@
 using System.Collections;
 using Spine.Unity;
 
-public class Bite : MonoBehaviour
+public class Bite : MonoBehaviour, IWeapon
 {
 
     public float damage;
